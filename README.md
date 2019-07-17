@@ -1,6 +1,80 @@
 # JS-FormDialog
 A simple vanilla js library to generate custom form on the go. Dialog will be generated & customized via a simple json object. 
 
+
+## Usage
+```
+    JSDialog.init({
+        title:'Login',
+        titleCenter: true,
+        backdrop: "dismiss",
+        showClose: true,
+        width: "300px",
+        fields: [
+            {
+                type: "text",
+                placeholder: "Username",
+                expand: "100%",
+                key: "url",
+                required: true
+            },
+            {
+                type: "password",
+                placeholder: "Password",
+                expand: "100%",
+                key: "password",
+                required: true
+            }
+        ],
+        submitCallback: function(data) {
+            console.log(data);
+            document.getElementById("response").innerHTML = "<h2>Login successful</h2>";
+        },
+        closeCallback: function() {
+            console.log('Login form closed');
+        }
+    });
+
+    JSDialog.show();
+```
+
+
+**This will return you json in following format on successful submit click**
+```
+{url: "test@test.com", password: "123456"}
+```
+
+This response is in key-value pair. With the keys passed in the fields array.
+
+
+
+## Properties
+Property | Type | Description
+---------|------|------------
+title | string | Render as title of dialog. Either pass string or html string.
+titleCenter | boolean | Align title as center. Default **false**
+backdrop | string | Pass 'dismiss' to enable dismiss dialog on background click. Default **none**
+showClose | boolean | Show close button on top. Default **false**
+width | string | Pass desired dialog width. Ex- '300px'. Default **80% of window**
+fields | JsonArray | Collection of elements to generate forms. Defined below.
+
+
+## Fields
+Property | Type | Description
+---------|------|------------
+type | string | Type of textbox to generate
+placeholder | string | String to use as placeholder
+expand | string | Control width in percentage
+key | string | Key to identify the output json
+required | boolean | Set field as required. Default **false**
+
+
+## Properties
+Property | Description
+---------|-------------
+submitCallback | Callback to get the response from dialog on submit button. It returns **data** in response.
+closeCallback | Fires when dialog closed. Captures close button click, submit & background dismiss.
+
 ## As of now the form only supports
 ```
 Text Input

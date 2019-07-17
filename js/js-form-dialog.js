@@ -27,6 +27,7 @@
         function(e) {
           if (e.currentTarget != e.target) return;
           JSDialog.hide();
+          options.closeCallback();
         },
         true
       );
@@ -93,22 +94,20 @@
   };
 
   addSubmitButton = function() {
-    if (options.submit) {
-      submit = document.createElement("input");
-      submit.setAttribute("type", "button");
-      submit.value = "Submit";
-      form.appendChild(submit);
+    submit = document.createElement("input");
+    submit.setAttribute("type", "button");
+    submit.value = "Submit";
+    form.appendChild(submit);
 
-      submit.onclick = function() {
-        try {
-          if (form.reportValidity()) {
-            submitValidForm();
-          }
-        } catch (e) {
-          legacyValidationCheck();
+    submit.onclick = function() {
+      try {
+        if (form.reportValidity()) {
+          submitValidForm();
         }
-      };
-    }
+      } catch (e) {
+        legacyValidationCheck();
+      }
+    };
   };
 
   legacyValidationCheck = function() {

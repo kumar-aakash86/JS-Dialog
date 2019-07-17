@@ -51,8 +51,8 @@
               required: false
             }
           ],
-          submit: true,
           submitCallback: function(data) {
+            console.log(data);
             var img = "<img  />";
             var src = "src='" + data.url + "'";
             if (data.width) src = src + " width='" + data.width + "'";
@@ -85,12 +85,12 @@
               type: "password",
               placeholder: "Password",
               expand: "100%",
-              key: "width",
+              key: "password",
               required: true
             }
           ],
-          submit: true,
           submitCallback: function(data) {
+            console.log(data);
             document.getElementById("response").innerHTML =
               "<h2>Login successful</h2>";
           },
