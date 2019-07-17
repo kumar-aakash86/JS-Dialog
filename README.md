@@ -3,46 +3,42 @@ A simple vanilla js library to generate custom form on the go. Dialog will be ge
 
 
 ## Usage
-```
-    JSDialog.init({
-        title:'Login',
-        titleCenter: true,
-        backdrop: "dismiss",
-        showClose: true,
-        width: "300px",
-        fields: [
-            {
-                type: "text",
-                placeholder: "Username",
-                expand: "100%",
-                key: "url",
-                required: true
-            },
-            {
-                type: "password",
-                placeholder: "Password",
-                expand: "100%",
-                key: "password",
-                required: true
-            }
-        ],
-        submitCallback: function(data) {
-            console.log(data);
-            document.getElementById("response").innerHTML = "<h2>Login successful</h2>";
-        },
-        closeCallback: function() {
-            console.log('Login form closed');
-        }
-    });
-
-    JSDialog.show();
-```
+>     JSDialog.init({
+>         title:'Login',
+>         titleCenter: true,
+>         backdrop: "dismiss",
+>         showClose: true,
+>         width: "300px",
+>         fields: [
+>             {
+>                 type: "text",
+>                 placeholder: "Username",
+>                 expand: "100%",
+>                 key: "url",
+>                 required: true
+>             },
+>             {
+>                 type: "password",
+>                 placeholder: "Password",
+>                 expand: "100%",
+>                 key: "password",
+>                 required: true
+>             }
+>         ],
+>         submitCallback: function(data) {
+>             console.log(data);
+>             document.getElementById("response").innerHTML = "<h2>Login successful</h2>";
+>         },
+>         closeCallback: function() {
+>             console.log('Login form closed');
+>         }
+>     });
+> 
+>     JSDialog.show();
 
 
 **This will return you json in following format on successful submit click**
-```
-{url: "test@test.com", password: "123456"}
-```
+> {url: "test@test.com", password: "123456"}
 
 This response is in key-value pair. With the keys passed in the fields array.
 
