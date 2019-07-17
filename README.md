@@ -52,7 +52,7 @@ titleCenter | boolean | Align title as center. Default **false**
 backdrop | string | Pass 'dismiss' to enable dismiss dialog on background click. Default **none**
 showClose | boolean | Show close button on top. Default **false**
 width | string | Pass desired dialog width. Ex- '300px'. Default **80% of window**
-fields | JsonArray | Collection of elements to generate forms. Defined below.
+fields | JsonArray | Collection of elements to generate form. Defined below.
 
 
 ## Fields
