@@ -3,6 +3,14 @@ A simple vanilla js library to generate custom form on the go. Dialog will be ge
 
 
 ## Usage
+Copy following lines
+> ```
+> <script src="https://cdn.jsdelivr.net/npm/js-form-dialog@1/js/js-form-dialog.min.js"></script>
+> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/js-form-dialog@1/css/style.css">
+> 
+> ```
+
+Use as following
 >     JSDialog.init({
 >         title:'Login',
 >         titleCenter: true,

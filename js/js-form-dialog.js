@@ -39,12 +39,6 @@
     container.removeChild(modal);
   };
 
-  getDefaultDialogBody = function() {
-    h = document.createElement("h1");
-    h.innerHTML = "Hello, this is default dialog body";
-    return h;
-  };
-
   getDialog = function() {
     modal = document.createElement("div");
     modal.setAttribute("id", "jsModal");
