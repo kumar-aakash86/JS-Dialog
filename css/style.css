@@ -19,6 +19,7 @@
   padding: 20px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
+  position: relative;
 }
 
 /* The Close Button */
@@ -27,12 +28,20 @@
     float: left;
     font-size: 18px;
     font-weight: bold;
+    width: 100%;
+    position: relative;
+}
+.title.center{
+  text-align: center;
 }
 .close {
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 
 .close:hover,
@@ -64,7 +73,8 @@
 }
 
 #form_body input[type="text"],
-#form_body input[type="number"] {
+#form_body input[type="number"],
+#form_body input[type="password"] {
   padding: 6px 10px;
   margin: 8px 0;
   box-sizing: border-box;

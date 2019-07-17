@@ -10,42 +10,32 @@
       container = document.getElementsByTagName("body")[0];
     }
 
-    // var body;
-    // if (opts.body) body = document.getElementById(opts.body);
-    // else body = getDefaultDialogBody();
-
-    
-    if (opts.btn) {
-      var btn = document.getElementById(opts.btn);
-      btn.addEventListener("click", function() {
-        JSDialog.show();
-      });
-    }
-
     HTMLCollection.prototype.forEach = Array.prototype.forEach;
+
+    return this;
   };
 
   const _show = function() {
-
     var dialog = getDialog();
 
     container.appendChild(dialog);
 
     modal.style.display = "block";
     if (options.backdrop && options.backdrop == "dismiss") {
-        modal.addEventListener(
-          "click",
-          function(e) {
-            if (e.currentTarget != e.target) return;
-            JSDialog.hide();
-          },
-          true
-        );
-      }
+      modal.addEventListener(
+        "click",
+        function(e) {
+          if (e.currentTarget != e.target) return;
+          JSDialog.hide();
+        },
+        true
+      );
+    }
   };
 
   const _hide = function() {
     modal.style.display = "none";
+    container.removeChild(modal);
   };
 
   getDefaultDialogBody = function() {
@@ -56,11 +46,12 @@
 
   getDialog = function() {
     modal = document.createElement("div");
-    modal.setAttribute("id", "myModal");
+    modal.setAttribute("id", "jsModal");
     modal.setAttribute("class", "modal");
     modalContent = document.createElement("div");
     modalContent.setAttribute("class", "modal-content");
     modal.appendChild(modalContent);
+    if (options.width) modalContent.style.width = options.width;
 
     addTitle(options.title);
     addCloseButton(options.showClose);
@@ -70,7 +61,6 @@
     modalContent.appendChild(modalBody);
 
     modalBody.appendChild(generateForm());
-    
 
     addSubmitButton();
     return modal;
@@ -80,11 +70,11 @@
     if (t) {
       title = document.createElement("span");
       title.setAttribute("class", "title");
+      if (options.titleCenter)
+        title.setAttribute("class", title.className + " center");
       title.innerHTML = t;
       modalContent.appendChild(title);
     }
-    // modalContent.insertAdjacentHTML('beforeend', '<div id="two">two</div>');
-    // modalContent.innerHTML = '<span class="close">&times;</span>';
   };
 
   addCloseButton = function(showClose) {
@@ -96,97 +86,84 @@
 
       close.onclick = function() {
         JSDialog.hide();
-        
+
         options.closeCallback();
       };
     }
-    // modalContent.insertAdjacentHTML('beforeend', '<div id="two">two</div>');
-    // modalContent.innerHTML = '<span class="close">&times;</span>';
   };
 
   addSubmitButton = function() {
     if (options.submit) {
       submit = document.createElement("input");
-      submit.setAttribute('type', 'button');
+      submit.setAttribute("type", "button");
       submit.value = "Submit";
       form.appendChild(submit);
 
       submit.onclick = function() {
-        try{
-        if (form.reportValidity()) {
+        try {
+          if (form.reportValidity()) {
             submitValidForm();
-        }
-        }
-        catch(e){
-            legacyValidationCheck();
+          }
+        } catch (e) {
+          legacyValidationCheck();
         }
       };
     }
   };
 
-  
-  legacyValidationCheck = function(){
+  legacyValidationCheck = function() {
     // Form is invalid!
     if (!form.checkValidity()) {
       // Create the temporary button, click and remove it
-      var tmpSubmit = document.createElement('button')
-      form.appendChild(tmpSubmit)
-      tmpSubmit.click()
-      form.removeChild(tmpSubmit)
-
+      var tmpSubmit = document.createElement("button");
+      form.appendChild(tmpSubmit);
+      tmpSubmit.click();
+      form.removeChild(tmpSubmit);
     } else {
-          submitValidForm();
+      submitValidForm();
     }
-};
+  };
 
-submitValidForm = function() {
-      var inputs = modalContent.getElementsByTagName("input");
-      // var data = [];
-      var val = {};
-      inputs.forEach(function(item) {
-          if(item.type != 'button'){
-          // val.key = item.dataset.key;
-          // val.value = item.value;
-          val[item.dataset.key] = item.value;
-          // data.push(val);
-
-          item.checkValidity();
+  submitValidForm = function() {
+    var inputs = modalContent.getElementsByTagName("input");
+    // var data = [];
+    var val = {};
+    inputs.forEach(function(item) {
+      if (item.type != "button") {
+        val[item.dataset.key] = item.value;
+        item.checkValidity();
       }
     });
 
-      options.submitCallback(val);
+    options.submitCallback(val);
 
-      JSDialog.hide();
-      options.closeCallback();
+    JSDialog.hide();
+    options.closeCallback();
   };
 
   generateForm = function() {
-      if(options.fields){
-          form = document.createElement('form');
-          form.setAttribute('id', 'form_body');
-          for(field of options.fields){
-            form.appendChild(getField(field));
-          }
+    if (options.fields) {
+      form = document.createElement("form");
+      form.setAttribute("id", "form_body");
+      for (field of options.fields) {
+        form.appendChild(getField(field));
       }
-      return form;
-  }
+    }
+    return form;
+  };
 
   getField = function(field) {
-      var el;
-    //   if(field.type == 'text'){
-          el = document.createElement('input');
-          el.setAttribute('type', field.type);
-          el.setAttribute('placeholder', field.placeholder);
-        //   el.setAttribute('width', field.expand);
-        el.style.width = field.expand;
-          el.setAttribute('data-key', field.key);
+    var el;
+    el = document.createElement("input");
+    el.setAttribute("type", field.type);
+    el.setAttribute("placeholder", field.placeholder);
+    el.style.width = field.expand;
+    el.setAttribute("data-key", field.key);
 
-          if(field.required)
-            el.setAttribute('required', 'required');
-    //   }
+    if (field.required) el.setAttribute("required", "required");
 
-      return el;
-  }
+    return el;
+  };
 
   window.JSDialog = {
     init: _init,

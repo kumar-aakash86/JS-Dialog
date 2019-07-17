@@ -6,73 +6,101 @@
   </head>
   <body>
     <!-- Start your code here -->
+    <div style="width: 800px; margin: 100px auto; text-align: center">
+      <button onclick="insertImage()">Insert Image</button>
+      <br />
+      <br />
+      <button onclick="loginForm()">
+        Login
+      </button>
 
-    <p class="lw">Hello Weaver!</p>
-    <button id="myBtn">Open Modal</button>
-
-    <form id="form_body">
-      <input
-        type="text"
-        placeholder="Enter image url"
-        class="full"
-        data-name="url"
-        required
-      /><br />
-      <input
-        type="number"
-        placeholder="width"
-        class="half"
-        data-name="width"
-      />&nbsp;&nbsp;
-      <input
-        type="number"
-        placeholder="height"
-        class="half"
-        data-name="height"
-      />
-    </form>
+      <div id="response"></div>
+    </div>
 
     <!-- End your code here -->
 
-    <script src="./js/js-dialog.js"></script>
+    <script src="./js/js-form-dialog.min.js"></script>
 
     <script>
-      JSDialog.init({
-        btn: "myBtn",
-        title: "Insert Image",
-        backdrop: "dismiss",
-        showClose: true,
-        fields: [
-          {
-            type: "text",
-            placeholder: "Enter image url here",
-            expand: "100%",
-            key: "url",
-            required: true
+      function insertImage() {
+        var v = JSDialog.init({
+          btn: "myBtn",
+          title: "Insert Image",
+          backdrop: "dismiss",
+          showClose: true,
+          fields: [
+            {
+              type: "text",
+              placeholder: "Enter image url here",
+              expand: "100%",
+              key: "url",
+              required: true
+            },
+            {
+              type: "number",
+              placeholder: "width",
+              expand: "50%",
+              key: "width",
+              required: false
+            },
+            {
+              type: "number",
+              placeholder: "height",
+              expand: "50%",
+              key: "height",
+              required: false
+            }
+          ],
+          submit: true,
+          submitCallback: function(data) {
+            var img = "<img  />";
+            var src = "src='" + data.url + "'";
+            if (data.width) src = src + " width='" + data.width + "'";
+            if (data.height) src = src + " height='" + data.height + "'";
+            img = [img.slice(0, 5), src, img.slice(5)].join("");
+            document.getElementById("response").innerHTML = img;
           },
-          {
-            type: "number",
-            placeholder: "width",
-            expand: "50%",
-            key: "width",
-            required: true
-          },
-          {
-            type: "number",
-            placeholder: "height",
-            expand: "50%",
-            key: "height",
-            required: true
+          closeCallback: function() {
+            console.log('Form closed');
           }
-        ],
-        submit: true,
-        submitCallback: function(data) {
-          console.log(data);
-        },
-        closeCallback: function() {
-          alert('closed');
-        }
-      });
+        }).show();
+      }
+
+      function loginForm() {
+        JSDialog.init({
+          title:'<div><img src="https://cdn.iconscout.com/icon/free/png-256/github-153-675523.png" width="100"/><br/><h4>Login</h4></div>',
+          titleCenter: true,
+          backdrop: "dismiss",
+          showClose: true,
+          width: "300px",
+          fields: [
+            {
+              type: "text",
+              placeholder: "Username",
+              expand: "100%",
+              key: "url",
+              required: true
+            },
+            {
+              type: "password",
+              placeholder: "Password",
+              expand: "100%",
+              key: "width",
+              required: true
+            }
+          ],
+          submit: true,
+          submitCallback: function(data) {
+            document.getElementById("response").innerHTML =
+              "<h2>Login successful</h2>";
+          },
+          closeCallback: function() {
+            console.log('Login form closed');
+          }
+        });
+
+        JSDialog.show();
+      }
     </script>
   </body>
 </html>

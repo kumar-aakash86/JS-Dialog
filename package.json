@@ -1,0 +1,26 @@
+{
+  "name": "js-form-dialog",
+  "version": "1.0.0",
+  "description": "A simple vanilla js library to generate custom form on the go.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kumar-aakash86/JS-FormDialog.git"
+  },
+  "keywords": [
+    "JS",
+    "JavaScript",
+    "Form",
+    "Dialog",
+    "Validators"
+  ],
+  "author": "Aakash Kumar",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/kumar-aakash86/JS-FormDialog/issues"
+  },
+  "homepage": "https://github.com/kumar-aakash86/JS-FormDialog#readme"
+}
