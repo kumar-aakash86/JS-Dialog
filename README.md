@@ -1,7 +1,7 @@
 # JS-FormDialog
 A simple vanilla js library to generate custom form on the go. Dialog will be generated & customized via a simple json object. 
 
-##As of now the form only supports:
+## As of now the form only supports:
 ```
 * Text Input
 * Numeric Input
@@ -9,7 +9,7 @@ A simple vanilla js library to generate custom form on the go. Dialog will be ge
 * Required validation
 ```
 
-##Other features are
+## Other features are
 ```
 * Customizable Header
 * Multiple dialogs support on single page
@@ -17,7 +17,7 @@ A simple vanilla js library to generate custom form on the go. Dialog will be ge
 * Dialog closed callback
 ```
 
-##Proposed features
+## Proposed features
 ```
 * Checkbox input with validation
 * Radiobutton input with validation
