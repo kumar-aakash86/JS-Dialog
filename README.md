@@ -1,28 +1,28 @@
 # JS-FormDialog
 A simple vanilla js library to generate custom form on the go. Dialog will be generated & customized via a simple json object. 
 
-## As of now the form only supports:
+## As of now the form only supports
 ```
-* Text Input
-* Numeric Input
-* Password Input
-* Required validation
+Text Input
+Numeric Input
+Password Input
+Required validation
 ```
 
 ## Other features are
 ```
-* Customizable Header
-* Multiple dialogs support on single page
-* Success callback
-* Dialog closed callback
+Customizable Header
+Multiple dialogs support on single page
+Success callback
+Dialog closed callback
 ```
 
 ## Proposed features
 ```
-* Checkbox input with validation
-* Radiobutton input with validation
-* Regex validation
-* Disable button until agree 
+Checkbox input with validation
+Radiobutton input with validation
+Regex validation
+Disable button until agree
 ```
 
 ## Roadmap
